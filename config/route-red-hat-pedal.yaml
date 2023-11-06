@@ -1,0 +1,79 @@
+﻿kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: red-hat-pedal
+  namespace: red-hat-pedal
+  uid: aeb3bae1-ccff-403e-97b8-6468ebc84d26
+  resourceVersion: '609215'
+  creationTimestamp: '2023-11-02T17:36:50Z'
+  labels:
+    app: red-hat-pedal
+    app.kubernetes.io/component: red-hat-pedal
+    app.kubernetes.io/instance: red-hat-pedal
+    app.kubernetes.io/name: red-hat-pedal
+    app.kubernetes.io/part-of: red-hat-pedal-app
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+  annotations:
+    openshift.io/host.generated: 'true'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2023-11-02T17:36:50Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:tls':
+            .: {}
+            'f:insecureEdgeTerminationPolicy': {}
+            'f:termination': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2023-11-02T17:36:50Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+      subresource: status
+spec:
+  host: red-hat-pedal-red-hat-pedal.apps.cluster-jwphn.dynamic.opentlc.com
+  to:
+    kind: Service
+    name: red-hat-pedal
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: red-hat-pedal-red-hat-pedal.apps.cluster-jwphn.dynamic.opentlc.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2023-11-02T17:36:50Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: router-default.apps.cluster-jwphn.dynamic.opentlc.com
