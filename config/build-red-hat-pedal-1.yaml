@@ -1,0 +1,206 @@
+﻿kind: Build
+apiVersion: build.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/build-config.name: red-hat-pedal
+    openshift.io/build.number: '1'
+    openshift.io/build.pod-name: red-hat-pedal-1-build
+  resourceVersion: '222249'
+  name: red-hat-pedal-1
+  uid: 93320077-81d8-4b6b-a723-df299c07eacf
+  creationTimestamp: '2023-11-06T14:51:29Z'
+  generation: 2
+  managedFields:
+    - manager: openshift-apiserver
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2023-11-06T14:51:29Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:openshift.io/build-config.name': {}
+            'f:openshift.io/build.number': {}
+          'f:labels':
+            'f:app.openshift.io/runtime': {}
+            'f:app': {}
+            'f:app.kubernetes.io/name': {}
+            .: {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime-version': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:openshift.io/build-config.name': {}
+            'f:app.kubernetes.io/component': {}
+            'f:buildconfig': {}
+            'f:openshift.io/build.start-policy': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"f52deb35-4f04-4e1a-8632-d2933a6ddb7c"}': {}
+        'f:spec':
+          'f:output':
+            'f:to': {}
+          'f:serviceAccount': {}
+          'f:source':
+            'f:contextDir': {}
+            'f:git':
+              .: {}
+              'f:uri': {}
+            'f:type': {}
+          'f:strategy':
+            'f:sourceStrategy':
+              .: {}
+              'f:from': {}
+              'f:pullSecret': {}
+            'f:type': {}
+          'f:triggeredBy': {}
+        'f:status':
+          'f:conditions':
+            .: {}
+            'k:{"type":"New"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:config': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2023-11-06T14:53:08Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:openshift.io/build.pod-name': {}
+        'f:spec':
+          'f:output':
+            'f:pushSecret': {}
+        'f:status':
+          'f:completionTimestamp': {}
+          'f:duration': {}
+          'f:outputDockerImageReference': {}
+          'f:phase': {}
+          'f:startTimestamp': {}
+  namespace: pv
+  ownerReferences:
+    - apiVersion: build.openshift.io/v1
+      kind: BuildConfig
+      name: red-hat-pedal
+      uid: f52deb35-4f04-4e1a-8632-d2933a6ddb7c
+      controller: true
+  labels:
+    app: red-hat-pedal
+    app.kubernetes.io/part-of: red-hat-pedal-app
+    app.kubernetes.io/instance: red-hat-pedal
+    openshift.io/build-config.name: red-hat-pedal
+    app.kubernetes.io/component: red-hat-pedal
+    openshift.io/build.start-policy: Serial
+    buildconfig: red-hat-pedal
+    app.openshift.io/runtime: java
+    app.kubernetes.io/name: red-hat-pedal
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'red-hat-pedal:latest'
+    pushSecret:
+      name: builder-dockercfg-bpdbz
+  resources: {}
+  triggeredBy:
+    - message: Image change
+      imageChangeBuild:
+        imageID: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:46a4e73ddb085d1f36b39903ea13ba307bb958789707e9afde048764b3e3cae2
+        fromRef:
+          kind: ImageStreamTag
+          namespace: openshift
+          name: 'java:openjdk-17-ubi8'
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:46a4e73ddb085d1f36b39903ea13ba307bb958789707e9afde048764b3e3cae2
+      pullSecret:
+        name: builder-dockercfg-bpdbz
+  postCommit: {}
+  serviceAccount: builder
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/PeterWhiteCL/RedHatPedal'
+    contextDir: /
+  revision:
+    type: Git
+    git:
+      commit: 237655af93de84e8f1716c4787e56d3cfbd9cecd
+      author:
+        name: PeterWhiteCL
+        email: 101654874+PeterWhiteCL@users.noreply.github.com
+      committer:
+        name: GitHub
+        email: noreply@github.com
+      message: Update pom.xml
+status:
+  output:
+    to:
+      imageDigest: 'sha256:03e6ea573aa8e719ff2215783f34c75b3398ad063efc742cdacb86dfee766a79'
+  config:
+    kind: BuildConfig
+    namespace: pv
+    name: red-hat-pedal
+  outputDockerImageReference: 'image-registry.openshift-image-registry.svc:5000/pv/red-hat-pedal:latest'
+  duration: 99000000000
+  startTimestamp: '2023-11-06T14:51:29Z'
+  stages:
+    - name: FetchInputs
+      startTime: '2023-11-06T14:51:36Z'
+      durationMilliseconds: 4494
+      steps:
+        - name: FetchGitSource
+          startTime: '2023-11-06T14:51:36Z'
+          durationMilliseconds: 4494
+    - name: PullImages
+      startTime: '2023-11-06T14:51:43Z'
+      durationMilliseconds: 31874
+      steps:
+        - name: PullBaseImage
+          startTime: '2023-11-06T14:51:43Z'
+          durationMilliseconds: 31874
+    - name: Build
+      startTime: '2023-11-06T14:52:15Z'
+      durationMilliseconds: 22878
+      steps:
+        - name: DockerBuild
+          startTime: '2023-11-06T14:52:15Z'
+          durationMilliseconds: 22878
+    - name: PushImage
+      startTime: '2023-11-06T14:52:38Z'
+      durationMilliseconds: 28698
+      steps:
+        - name: PushImage
+          startTime: '2023-11-06T14:52:38Z'
+          durationMilliseconds: 28698
+  conditions:
+    - type: New
+      status: 'False'
+      lastUpdateTime: '2023-11-06T14:51:29Z'
+      lastTransitionTime: '2023-11-06T14:51:29Z'
+    - type: Pending
+      status: 'False'
+      lastUpdateTime: '2023-11-06T14:51:36Z'
+      lastTransitionTime: '2023-11-06T14:51:36Z'
+    - type: Running
+      status: 'False'
+      lastUpdateTime: '2023-11-06T14:53:08Z'
+      lastTransitionTime: '2023-11-06T14:53:08Z'
+    - type: Complete
+      status: 'True'
+      lastUpdateTime: '2023-11-06T14:53:08Z'
+      lastTransitionTime: '2023-11-06T14:53:08Z'
+  completionTimestamp: '2023-11-06T14:53:08Z'
+  phase: Complete
